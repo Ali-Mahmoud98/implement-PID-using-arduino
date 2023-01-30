@@ -1,12 +1,14 @@
 double output, ref, controlSignal;
 double kp, ki, kd;
 // should enter the values of kp, ki and kd
+// enter according to your system
 
-int T =50;//sampling time
+int T;//sampling time vary according to your system
+// practically should be 20 times faster than rising time(tr)
 unsigned long lastTime;
 double totalError, lastError;
 
-int FeedBackPin = A5;
+int FeedBackPin = A1;
 int feedBackV;
 double temperature;
 int outPin =4;
@@ -17,7 +19,7 @@ void setup(){
 
 void loop(){
 	feedBackV = analogRead(FeedBackPin);
-	temperature = sensorV;
+	temperature = feedBackV * 0.488;
 	ref = 25; //reference point
 	
 	PID_Control();
